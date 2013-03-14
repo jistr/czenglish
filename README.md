@@ -38,7 +38,9 @@ Installation
 
 1.  Install the layout file into your system.
 
-        sudo su -c 'cd /usr/share/X11/xkb/symbols; wget https://raw.github.com/jistr/czenglish/master/symbols/cen; chmod 0644 cen'
+        sudo su -c 'cd /usr/share/X11/xkb/symbols
+                    wget -nc https://raw.github.com/jistr/czenglish/master/symbols/cen
+                    chmod 0644 cen'
 
 2.  Set it as layout for your user
 
