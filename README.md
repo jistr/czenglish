@@ -42,11 +42,16 @@ Installation
                     wget -nc https://raw.github.com/jistr/czenglish/master/symbols/cen
                     chmod 0644 cen'
 
-2.  Set it as layout for your user
+2.  Set it as layout for your user (takes effect on next login).
 
     basic: `dconf write /org/gnome/libgnomekbd/keyboard/layouts "['cen']"`  
     ralt_switch: `dconf write /org/gnome/libgnomekbd/keyboard/layouts "['cen\tralt_switch']"`  
     caps_switch: `dconf write /org/gnome/libgnomekbd/keyboard/layouts "['cen\tcaps_switch']"`  
     nerd: `dconf write /org/gnome/libgnomekbd/keyboard/layouts "['cen\tnerd']"`
 
-3.  Do a logout/login.
+3.  Either do a logout/login for the settings to take effect, or run setxkbmap to change layout in current session.
+
+    basic: `setxkbmap -layout cen`  
+    ralt_switch: `setxkbmap -layout cen -variant ralt_switch`  
+    caps_switch: `setxkbmap -layout cen -variant caps_switch`  
+    nerd: `setxkbmap -layout cen -variant nerd`
