@@ -36,4 +36,15 @@ lazy to click through X settings to set the modifiers properly.
 Installation
 ------------
 
-TODO ;)
+1.  Install the layout file into your system.
+
+        sudo su -c 'cd /usr/share/X11/xkb/symbols; wget https://raw.github.com/jistr/czenglish/master/symbols/cen; chmod 0644 cen'
+
+2.  Set it as layout for your user
+
+    basic: `dconf write /org/gnome/libgnomekbd/keyboard/layouts "['cen']"`  
+    ralt_switch: `dconf write /org/gnome/libgnomekbd/keyboard/layouts "['cen\tralt_switch']"`  
+    caps_switch: `dconf write /org/gnome/libgnomekbd/keyboard/layouts "['cen\tcaps_switch']"`  
+    nerd: `dconf write /org/gnome/libgnomekbd/keyboard/layouts "['cen\tnerd']"`
+
+3.  Do a logout/login.
