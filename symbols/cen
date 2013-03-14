@@ -1,0 +1,100 @@
+partial default alphanumeric_keys
+xkb_symbols "basic" {
+
+    include "latin"
+
+    name[Group1]= "Czenglish (no switching)";
+
+
+    // Use 3rd level for national characters
+
+    key <AB01>  { [         z,          Z,        zcaron,      Zcaron ] };
+    key <AB02>  { [         x,          X,        ssharp,    NoSymbol ] };
+    key <AB03>  { [         c,          C,        ccaron,      Ccaron ] };
+    key <AB04>  { [         v,          V,      ccedilla,    Ccedilla ] };
+    key <AB05>  { [         b,          B,        ntilde,      Ntilde ] };
+    key <AB06>  { [         n,          N,        ncaron,      Ncaron ] };
+    key <AB07>  { [         m,          M,        lacute,      Lacute ] };
+
+    key <AC01>  { [         a,          A,        aacute,      Aacute ] };
+    key <AC02>  { [         s,          S,        scaron,      Scaron ] };
+    key <AC03>  { [         d,          D,        dcaron,      Dcaron ] };
+    key <AC04>  { [         f,          F,    ediaeresis,  Ediaeresis ] };
+    key <AC05>  { [         g,          G,        racute,      Racute ] };
+    key <AC06>  { [         h,          H,        uacute,      Uacute ] };
+    key <AC07>  { [         j,          J,    udiaeresis,  Udiaeresis ] };
+    key <AC08>  { [         k,          K,   ocircumflex, Ocircumflex ] };
+    key <AC09>  { [         l,          L,        lcaron,      Lcaron ] };
+
+    key <AD01>  { [         q,          Q,   adiaeresis,   Adiaeresis ] };
+    key <AD02>  { [         w,          W,       ecaron,       Ecaron ] };
+    key <AD03>  { [         e,          E,       eacute,       Eacute ] };
+    key <AD04>  { [         r,          R,       rcaron,       Rcaron ] };
+    key <AD05>  { [         t,          T,       tcaron,       Tcaron ] };
+    key <AD06>  { [         y,          Y,       yacute,       Yacute ] };
+    key <AD07>  { [         u,          U,        uring,        Uring ] };
+    key <AD08>  { [         i,          I,       iacute,       Iacute ] };
+    key <AD09>  { [         o,          O,       oacute,       Oacute ] };
+    key <AD10>  { [         p,          P,   odiaeresis,   Odiaeresis ] };
+
+
+    // Dead acute/caron
+    key <AE12>  { [     equal,       plus,   dead_acute,   dead_caron ] }; 
+
+
+    // Nobr space only with modifier + shift to prevent accidental use
+    key <SPCE>  { [     space,      space,        space, nobreakspace ] };
+
+
+    // Some USB keyboards seem to have trouble with Caps + Shift + E/S
+    // so provide an alternative way to write Scaron and Ecaron
+    key <AE02>  { [         2,         at,       Ecaron,     NoSymbol ] };
+    key <AE03>  { [         3, numbersign,       Scaron,     NoSymbol ] };
+
+
+};
+
+partial alphanumeric_keys
+xkb_symbols "ralt_switch" {
+    include "cen(basic)"
+    include "level3(ralt_switch)"
+
+    name[Group1]= "Czenglish (RAlt switching)";
+};
+
+partial alphanumeric_keys
+xkb_symbols "caps_switch" {
+    include "cen(basic)"
+    include "level3(caps_switch)"
+
+    name[Group1]= "Czenglish (Caps Lock switching)";
+};
+
+partial alphanumeric_keys
+xkb_symbols "nerd" {
+    include "cen(basic)"
+    include "level3(caps_switch)"
+
+    name[Group1]= "Czenglish (nerd setup)";
+
+    // Write Ctrl and Alt with thumbs:
+    // Alt -> Ctrl
+    // Win -> Alt
+    // Menu -> Alt
+    // Left Ctrl -> Alt (to have at least one Alt fallback if keyboard has no Win/Menu keys)
+    // Right Ctrl -> Left Super (Gnome menu)
+    key <LALT> {  [ Control_L, Control_L ] };
+    key <RALT> { type[Group1] = "TWO_LEVEL",
+                 symbols[Group1] = [ Control_R, Control_R ] };
+
+    key <LWIN> {  [     Alt_L,    Meta_L ] };
+    key <RWIN> {  [     Alt_R,    Meta_R ] };
+    key <MENU> {  [     Alt_R,    Meta_R ] };
+
+    key <LCTL> {  [     Alt_L,    Meta_L ] };
+    key <RCTL> {  [   Super_L            ] };
+
+    modifier_map Control { <RALT>, <LALT> };
+    modifier_map  Mod1 { <LWIN>, <RWIN>, <MENU>, <LCTL> };
+    modifier_map  Mod4 { <RCTL> };
+};
