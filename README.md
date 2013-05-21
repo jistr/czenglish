@@ -42,16 +42,25 @@ Installation
                     wget -nc https://raw.github.com/jistr/czenglish/master/symbols/cen
                     chmod 0644 cen'
 
-2.  Set it as layout for your user (takes effect on next login).
-
-    basic: `dconf write /org/gnome/libgnomekbd/keyboard/layouts "['cen']"`  
-    ralt_switch: `dconf write /org/gnome/libgnomekbd/keyboard/layouts "['cen\tralt_switch']"`  
-    caps_switch: `dconf write /org/gnome/libgnomekbd/keyboard/layouts "['cen\tcaps_switch']"`  
-    nerd: `dconf write /org/gnome/libgnomekbd/keyboard/layouts "['cen\tnerd']"`
-
-3.  Either do a logout/login for the settings to take effect, or run setxkbmap to change layout in current session.
+2.  Now you can try the layout in current session.
 
     basic: `setxkbmap -layout cen`  
     ralt_switch: `setxkbmap -layout cen -variant ralt_switch`  
     caps_switch: `setxkbmap -layout cen -variant caps_switch`  
     nerd: `setxkbmap -layout cen -variant nerd`
+
+### Persistent settings for Gnome 3.6+ ###
+
+1.  Gnome 3.6 (and higher?) has a
+    [bug](https://bugzilla.gnome.org/show_bug.cgi?id=696288)
+    that makes it impossible to make custom keyboard layout persistent
+    across sessions without editing Xkb rules. The `xkb_rules_hack.sh`
+    script attempts to do exactly that. *Use at your own risk, it edits
+    system files in /usr/share/X11/xkb/rules.*
+
+2.  Set the layout in DConf.
+
+    basic: `dconf write /org/gnome/desktop/input-sources/sources "[('xkb', 'cen')]"`  
+    ralt_switch: `dconf write /org/gnome/desktop/input-sources/sources "[('xkb', 'cen+ralt_switch')]"`  
+    caps_switch: `dconf write /org/gnome/desktop/input-sources/sources "[('xkb', 'cen+caps_switch')]"`  
+    nerd: `dconf write /org/gnome/desktop/input-sources/sources "[('xkb', 'cen+nerd')]"`
