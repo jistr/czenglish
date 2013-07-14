@@ -88,7 +88,7 @@ function insert_after() {
     return
   fi
 
-  sed -nie "/$after/a\\$text" "$file_name"
+  sed -ie "/$after/a\\$text" "$file_name"
 }
 
 main
