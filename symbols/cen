@@ -15,6 +15,7 @@ xkb_symbols "basic" {
     key <AB05>  { [         b,          B,        ntilde,      Ntilde ] };
     key <AB06>  { [         n,          N,        ncaron,      Ncaron ] };
     key <AB07>  { [         m,          M,        lacute,      Lacute ] };
+    key <AB09>  { [    period,    greater,      ellipsis,    NoSymbol ] };
 
     key <AC01>  { [         a,          A,        aacute,      Aacute ] };
     key <AC02>  { [         s,          S,        scaron,      Scaron ] };
